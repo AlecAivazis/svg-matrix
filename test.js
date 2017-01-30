@@ -243,10 +243,6 @@ test("Can compose scale and rotate", t => {
                     .scale(scaleFactor, scaleFactor, x, y)
                     .rotate(angle, x, y)
 
-    console.log((new Matrix()).scale(scaleFactor, scaleFactor, x, y))
-    console.log((new Matrix()).rotate(angle, x, y))
-    console.log((new Matrix()).scale(scaleFactor, scaleFactor, x, y).rotate(angle, x, y))
-
     // make sure the matrix matches expectations
     t.deepEqual(mat.toJS(), {
         a: 0.8333333333334116,
