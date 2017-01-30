@@ -1,7 +1,8 @@
 // external imports
 import test from 'ava'
 // local imports
-import Matrix from './index'
+import Matrix from './src/matrix'
+import factory from './src'
 
 test('Matrix can be created with no args', t => {
     // create an empty matrix
@@ -196,4 +197,19 @@ test("Can retrieve transform string", t => {
     const mat = new Matrix()
     // make sure we can compute the transform string for the given matrix
     t.is(mat.transformString, "matrix(1, 0, 0, 1, 0, 0)")
+})
+
+test("Factory creates a matrix instance", t => {
+    // create a matrix from the factory
+    const mat = factory()
+
+    // make sure the matrix has the correct default values
+    t.deepEqual(mat.toJS(), {
+        a: 1,
+        b: 0,
+        c: 0,
+        d: 1,
+        e: 0,
+        f: 0,
+    })
 })
