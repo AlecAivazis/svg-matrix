@@ -66,3 +66,21 @@ test('Can add two matrices together', t => {
         f: 0
     })
 })
+
+test("Can compute inverse of matrix", t => {
+    // create a matrix to test
+    const mat = new Matrix({a: 1, b:2, c:3, d:4, e:5, f:6})
+
+    // compute the inverse of the matrix
+    const inverse = mat.inverse()
+
+    // make sure it matches expectation
+    t.deepEqual(inverse.toJS(), {
+        a: -2,
+        b: 1,
+        c: 1.5,
+        d: -0.5,
+        e: 1,
+        f: -2
+    })
+})

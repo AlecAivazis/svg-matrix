@@ -30,13 +30,26 @@ class Matrix extends Map {
 
         // batch the mutations together
         return this.withMutations(map => {
-            // add ea
             map.set('a', out[0][0])
                .set('b', out[1][0])
                .set('c', out[0][1])
                .set('d', out[1][1])
                .set('e', out[0][2])
                .set('f', out[1][2])
+        })
+    }
+
+    inverse() {
+        const x = this.a * this.d - this.b * this.c
+
+        // return the inverse of the matrix
+        return new Matrix({
+            a: this.d / x,
+            b: -this.b / x,
+            c: -this.c / x,
+            d: this.a / x,
+            e: (this.c * this.f - this.d * this.e) / x,
+            f: (this.b * this.e - this.a * this.f) / x
         })
     }
 
