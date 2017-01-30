@@ -85,7 +85,7 @@ test("Can compute inverse of matrix", t => {
     })
 })
 
-test("Can translate matrices", t => {
+test("Can translate matrix", t => {
     // create a matrix to translate
     const mat = new Matrix({e: 20, f: 30})
     // perform the translatoin
@@ -99,5 +99,94 @@ test("Can translate matrices", t => {
         d: 1,
         e: 30,
         f: 20
+    })
+})
+
+test("Can rotate matrix", t => {
+    // create a matrix to test with
+    const mat = new Matrix()
+
+    // rotate the matrix
+    const rotated = mat.rotate(45, 0, 0)
+
+    // make sure it matches expectation
+    t.is(+rotated.a.toFixed(3), 0.707)
+    t.is(+rotated.b.toFixed(3), 0.707)
+    t.is(+rotated.c.toFixed(3), -0.707)
+    t.is(+rotated.d.toFixed(3), 0.707)
+    t.is(+rotated.e.toFixed(3), 0)
+    t.is(+rotated.f.toFixed(3), 0)
+})
+
+test("Can scale matrix by single value", t => {
+    // create a matrix we can test with
+    const mat = new Matrix({e: 20, f: 30})
+    // scale the original matrix
+    const scaled = mat.scale(2)
+    // make sure the scaled matrix matches expectations
+    t.deepEqual(scaled.toJS(), {
+        a: 2,
+        b: 0,
+        c: 0,
+        d: 2,
+        e: 20,
+        f: 30
+    })
+
+    // shrink the matrix to its original size
+    const backScaled = scaled.scale(0.5)
+    // make sure the back scaled matrix matches expectation
+    t.deepEqual(backScaled.toJS(), {
+        a: 1,
+        b: 0,
+        c: 0,
+        d: 1,
+        e: 20,
+        f: 30
+    })
+})
+
+test("Can scale matrix by two values", t => {
+    // start off with a simple matrix
+    const mat = new Matrix({e: 20, f: 30})
+
+    // partially scale the matrix
+    const firstScale = mat.scale(2, 3)
+    // make sure it matches expectation
+    t.deepEqual(firstScale.toJS(), {
+        a: 2,
+        b: 0,
+        c: 0,
+        d: 3,
+        e: 20,
+        f: 30
+    })
+
+    // scale the same matrix again
+    const secondScale = firstScale.scale(0.5, 1)
+    // make sure it matches expectation
+    t.deepEqual(secondScale.toJS(), {
+        a: 1,
+        b: 0,
+        c: 0,
+        d: 3,
+        e: 20,
+        f: 30
+    })
+})
+
+test("Can scale matrix about a given point", t => {
+    // create a matrix to test with
+    const mat = new Matrix({e: 20, f: 30})
+    // scale the matrix about some center
+    const scaled = mat.scale(2, 3, 5, -5)
+    // make sure it matches expectations
+    t.deepEqual(scaled.toJS(), {
+        a: 2,
+        b: 0,
+        c: 0,
+        d: 3,
+        e: 15,
+        f: 40
     })
 })

@@ -54,14 +54,31 @@ class Matrix extends Map {
     }
 
     translate(x, y) {
-        return this.plus(new Matrix({
-            a: 1,
-            b: 0,
-            c: 0,
-            d: 1,
-            e: x,
-            f: y
-        }))
+        // add the translation matrix
+        return this.plus(new Matrix({e: x, f: y}))
+    }
+
+    rotate(deg, x=0, y=0) {
+        // compute the angle to rotate in radians
+        const rad = deg % 360 * Math.PI / 180,
+              sin = +Math.cos(rad).toFixed(9),
+              cos = +Math.cos(rad).toFixed(9)
+
+        // add the rotation and appropriate translation
+        return this.plus(new Matrix({a: cos, b: sin, c: -sin, d: cos, e: x, f:y}))
+                   .plus(new Matrix({e: -x, f: -y}))
+    }
+
+    scale(x, y, cx=0, cy=0) {
+        // if there is no y value
+        if (!y) {
+            // use the x value
+            y =x
+        }
+
+        return this.plus(new Matrix({e: cx, f: cy}))
+                   .plus(new Matrix({a: x, d: y}))
+                   .plus(new Matrix({e: -cx, f: -cy}))
     }
 
     // element accessors
