@@ -213,3 +213,28 @@ test("Factory creates a matrix instance", t => {
         f: 0,
     })
 })
+
+test("Can compose scale and rotate", t => {
+    // the amount to scale the matrix by
+    const scaleFactor = 0.9316949906249123,
+    // the angle to rotate the matrix
+          angle = 26.56505117707799,
+          x = 50,
+          y = 50,
+          // create a matrix that is scaled and rotated
+          mat = new Matrix()
+                    .scale(scaleFactor, scaleFactor, x, y)
+                    .rotate(angle, x, y)
+
+    // make sure the matrix matches expectations
+    t.deepEqual(mat.toJS(), {
+        a: 0.8333333333334116,
+        b: 0.41666666620085835,
+        c: -0.41666666620085835,
+        d: 0.8333333333334116,
+        e: 29.166666643372338,
+        f: -12.499999976713497
+    })
+
+
+})
