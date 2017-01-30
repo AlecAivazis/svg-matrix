@@ -190,3 +190,10 @@ test("Can scale matrix about a given point", t => {
         f: 40
     })
 })
+
+test("Can retrieve transform string", t => {
+    // create a matrix to test with
+    const mat = new Matrix()
+    // make sure we can compute the transform string for the given matrix
+    t.is(mat.transformString, "matrix(1, 0, 0, 1, 0, 0)")
+})

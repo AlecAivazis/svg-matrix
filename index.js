@@ -81,6 +81,10 @@ class Matrix extends Map {
                    .plus(new Matrix({e: -cx, f: -cy}))
     }
 
+    get transformString() {
+        return `matrix(${this.a}, ${this.b}, ${this.c}, ${this.d}, ${this.e}, ${this.f})`
+    }
+
     // element accessors
 
     get a() {
