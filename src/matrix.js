@@ -61,7 +61,7 @@ class Matrix extends Map {
     rotate(deg, x=0, y=0) {
         // compute the angle to rotate in radians
         const rad = deg % 360 * Math.PI / 180,
-              sin = +Math.cos(rad).toFixed(9),
+              sin = +Math.sin(rad).toFixed(9),
               cos = +Math.cos(rad).toFixed(9)
 
         // add the rotation and appropriate translation

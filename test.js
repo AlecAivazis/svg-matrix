@@ -119,6 +119,23 @@ test("Can rotate matrix", t => {
     t.is(+rotated.f.toFixed(3), 0)
 })
 
+test("Can rotate matrix about a single point", t => {
+    const angle = 26.56505117707799,
+          x = 50,
+          y = 50
+    // create a matrix to test with
+    const mat = (new Matrix()).rotate(angle, x, y)
+
+    t.deepEqual(mat.toJS(), {
+        a: 0.894427191,
+        b: 0.447213595,
+        c: -0.447213595,
+        d: 0.894427191,
+        e: 27.6393202,
+        f: -17.082039300000005,
+    })
+})
+
 test("Can scale matrix by single value", t => {
     // create a matrix we can test with
     const mat = new Matrix({e: 20, f: 30})
@@ -225,6 +242,10 @@ test("Can compose scale and rotate", t => {
           mat = new Matrix()
                     .scale(scaleFactor, scaleFactor, x, y)
                     .rotate(angle, x, y)
+
+    console.log((new Matrix()).scale(scaleFactor, scaleFactor, x, y))
+    console.log((new Matrix()).rotate(angle, x, y))
+    console.log((new Matrix()).scale(scaleFactor, scaleFactor, x, y).rotate(angle, x, y))
 
     // make sure the matrix matches expectations
     t.deepEqual(mat.toJS(), {
