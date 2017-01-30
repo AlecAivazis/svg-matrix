@@ -84,3 +84,20 @@ test("Can compute inverse of matrix", t => {
         f: -2
     })
 })
+
+test("Can translate matrices", t => {
+    // create a matrix to translate
+    const mat = new Matrix({e: 20, f: 30})
+    // perform the translatoin
+    const translated = mat.translate(10, -10)
+
+    // make sure the state after the translation matches expectation
+    t.deepEqual(translated.toJS(), {
+        a: 1,
+        b: 0,
+        c: 0,
+        d: 1,
+        e: 30,
+        f: 20
+    })
+})
