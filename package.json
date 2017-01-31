@@ -1,6 +1,6 @@
 {
   "name": "svg-matrix",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "",
   "main": "build.js",
   "scripts": {
@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-loader": "^6.2.10",
     "extendable-immutable": "^1.3.0",
     "immutable": "^3.8.1"
   },
